@@ -1,6 +1,6 @@
 {
   "name": "minecraft-protocol-chat-parser",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A small library to transform a string formatted by Minecraft into a JavaScript object ",
   "main": "index.js",
   "scripts": {
