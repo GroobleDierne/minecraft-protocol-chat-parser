@@ -17,7 +17,7 @@
     "parser"
   ],
   "author": "Grooble_",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/GroobleDierne/minecraft-protocol-chat-parser/issues"
   },
