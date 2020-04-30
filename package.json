@@ -1,0 +1,25 @@
+{
+  "name": "minecraft-protocol-chat-parser",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GroobleDierne/minecraft-protocol-chat-parser.git"
+  },
+  "keywords": [
+    "Minecraft",
+    "protocol",
+    "chat",
+    "parser"
+  ],
+  "author": "Grooble_",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GroobleDierne/minecraft-protocol-chat-parser/issues"
+  },
+  "homepage": "https://github.com/GroobleDierne/minecraft-protocol-chat-parser#readme"
+}
