@@ -1,3 +1,3 @@
-const parse = require('./index').parse
+const parse = require('minecraft-protocol-chat-parser').parse
 
-console.log(parse('§§', true));
+console.log(parse('§4Hello §bWorld'));
