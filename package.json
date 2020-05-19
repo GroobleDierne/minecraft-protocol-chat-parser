@@ -1,7 +1,7 @@
 {
   "name": "minecraft-protocol-chat-parser",
-  "version": "1.0.1",
-  "description": "A small library to transform a string formatted by Minecraft into a JavaScript object ",
+  "version": "1.0.2",
+  "description": "A small library to transform a string with Minecraft format caracter into a JavaScript object compatible with Minecraft's chat protocol",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
