@@ -1,4 +1,4 @@
-### minecraft-protocol-chat-parser
+## minecraft-protocol-chat-parser
 A small library to transform a string with Minecraft format caracter into a JavaScript object compatible with Minecraft's chat protocol
 
 ```javascript
@@ -32,3 +32,7 @@ Output
   ]
 }
 ```
+
+### TODO
+
+Take the json object and convert it to a String
