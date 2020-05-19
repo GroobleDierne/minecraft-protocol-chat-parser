@@ -126,4 +126,4 @@ const colorCodes = {
     '§': '&'
 }
 
-module.exports = { parse }
+module.exports = { parse, colorCodes }
