@@ -1,5 +1,5 @@
 ## minecraft-protocol-chat-parser
-[![npm version](https://badge.fury.io/js/minecraft-protocol-chat-parser.svg)](https://badge.fury.io/js/minecraft-protocol-chat-parser)
+[![npm version](https://badge.fury.io/js/minecraft-protocol-chat-parser.svg)](https://www.npmjs.com/package/minecraft-protocol-chat-parser)
 
 A small library to transform a string with Minecraft format caracter into a JavaScript object compatible with Minecraft's chat protocol
 
