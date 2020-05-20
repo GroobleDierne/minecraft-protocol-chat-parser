@@ -35,6 +35,12 @@ Output
 }
 ```
 
+You can also access the mapping used to convert color codes into color names like that :
+
+```javascript
+const colorMapping = require('minecraft-protocol-chat-parser').colorCodes
+```
+
 ### TODO
 
 Take the json object and convert it to a String
