@@ -1,7 +1,7 @@
 //Thanks to @jellz for the code I used as an inspiration
 //https://github.com/jellz/minecraft-server/blob/rewrite/src/chat/ChatUtil.js
 
-var returnExemple = {
+const messageExample = {
     text: "",
     extra: [
         {
@@ -16,13 +16,25 @@ var returnExemple = {
         }
     ]
 }
+const extraExample = {
+    text: "",
+    color: "",
+    bold: false,
+    italic: false,
+    underlined: false,
+    strikethrough: false,
+    obfuscated: false
+
+}
+
 /**
- * @
+ * 
  * @param {String} message the message to parse
  * @param {boolean} acceptAndChar if set to true, the parser will consider the '&' character as a formatting character
- * @returns {returnExemple} an object ready to be used with node-minecraft-protocol
+ * @returns {messageExemple} an object ready to be used with node-minecraft-protocol
+ * @since 1.0.0
  */
-function parse(message, acceptAndChar = false) {
+function parseString(message, acceptAndChar = false) {
     if (message.indexOf('§') === -1 
     && (acceptAndChar === false || message.indexOf('&') === -1)) return { text: message }
 
@@ -99,6 +111,67 @@ function parse(message, acceptAndChar = false) {
     
 }
 
+/**
+ * This method accept a JSON object or a JSON like string who can be parsed to JSON using JSON.parse()
+ * @param {messageExample|String} the message to parse
+ * @returns {String}
+ * @since 2.0.0
+ */
+function parseJSON(message, useAndChar = false) {
+    let parsedExtra = '';
+
+    for (let extra of message.extra) parsedExtra += parseExtra(extra, useAndChar)
+
+    delete message.extra
+
+    return parseExtra(message, useAndChar)+ parsedExtra;
+}
+
+/**
+ * 
+ * @param {extraExample|String} extra the extra to parse
+ * @param {Boolean} useAndChar if set to true the format caracter will be "&" and not "§"
+ */
+function parseExtra(extra, useAndChar = false) {
+    let char = (useAndChar === true ? '&' : '§')
+
+    if (typeof message === 'string') message = JSON.parse(message)
+
+    let parsedMessage = '';
+
+    for (const key in extra) {
+        let value = extra[key];
+
+        if (key === 'text') continue
+        if (key === 'color' && value) parsedMessage += `${char}${jsonCodes[value]}`
+
+        if (value === true) parsedMessage += `${char}${jsonCodes[key]}`
+    }
+    return parsedMessage += extra.text
+}
+const jsonCodes = {
+    'bold': 'l',
+    'italic': 'o',
+    'underlined': 'n',
+    'strikethrough': 'm',
+    'obfuscated': 'k',
+    'black': '0',
+    'dark_blue': '1',
+    'dark_green': '2',
+    'dark_cyan': '3',
+    'dark_red': '4',
+    'dark_purple': '5',
+    'gold': '6',
+    'gray': '7',
+    'dark_gray': '8',
+    'blue': '9',
+    'green': 'a',
+    'aqua': 'b',
+    'red': 'c',
+    'light_purple': 'd',
+    'yellow': 'e',
+    'white': 'f'
+}
 const colorCodes = {
     '0': 'black',
     '1': 'dark_blue',
@@ -126,4 +199,14 @@ const colorCodes = {
     '§': '&'
 }
 
-module.exports = { parse, colorCodes }
+module.exports = {
+    /**
+     * @deprecated This function is deprecated and will be removed in version 3.0.0 use parseString() instead
+     */
+    parse: require('util').deprecate(parseString, 'The function parse() is deprecated and will be removed in version 3.0.0 use parseString() instead'),
+    colorCodes,
+    jsonCodes,
+    parseJSON, 
+    parseExtra,
+    parseString
+}
