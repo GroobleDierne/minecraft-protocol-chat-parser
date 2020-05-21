@@ -135,7 +135,7 @@ function parseJSON(message, useAndChar = false) {
 function parseExtra(extra, useAndChar = false) {
     let char = (useAndChar === true ? '&' : '§')
 
-    if (typeof message === 'string') message = JSON.parse(message)
+    if (typeof extra === 'string') extra = JSON.parse(extra)
 
     let parsedMessage = '';
 
