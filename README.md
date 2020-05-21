@@ -1,12 +1,16 @@
-## minecraft-protocol-chat-parser
+# minecraft-protocol-chat-parser
 [![npm version](https://badge.fury.io/js/minecraft-protocol-chat-parser.svg)](https://www.npmjs.com/package/minecraft-protocol-chat-parser)
 
 A small library to transform a string with Minecraft format caracter into a JavaScript object compatible with Minecraft's chat protocol
 
-```javascript
-const parse = require('minecraft-protocol-chat-parser').parse
+## Functions
 
-console.log(parse('§4Hello §bWorld'));
+### parseString(message: string, acceptAndChar?: boolean)
+
+```javascript
+const parseString = require('minecraft-protocol-chat-parser').parseString
+
+console.log(parseString('§4Hello §bWorld'));
 ```
 Output
 ```javascript
@@ -33,13 +37,8 @@ Output
     }
   ]
 }
-```
 
-You can also access the mapping used to convert color codes into color names like that :
-
-```javascript
-const colorMapping = require('minecraft-protocol-chat-parser').colorCodes
-```
+### parseJSON(message: string | object, useAndChar?: boolean)
 
 Version 2.0.0 include a partial support to parse a JSON chat protocol data into a string. It's only support formating properties and will crash if the data contain hoverEvent, clickEvent or others properties who aren't used for text formating.
 
@@ -87,6 +86,73 @@ Output
 
 > Hello §0Grooble §5§o§nHow are u §e§l?
 
-The method `parseJSON(message, useAndChar)` can also take a boolean argument `useAndChar` if set to true the `§` will be replaced by `&` in the result string.
+If the argument `useAndChar` is set to true the `§` will be replaced by `&` in the result string.
+
+### parseExtra(extra: string | object, useAndChar?: boolean)
 
 The method `parseExtra(extra, useAndChar)` take only one extra not the full message.
+
+If the argument `useAndChar` is set to true the `§` will be replaced by `&` in the result string.
+
+## Variables
+
+### jsonCodes
+
+```javascript
+{
+    'bold': 'l',
+    'italic': 'o',
+    'underlined': 'n',
+    'strikethrough': 'm',
+    'obfuscated': 'k',
+    'black': '0',
+    'dark_blue': '1',
+    'dark_green': '2',
+    'dark_cyan': '3',
+    'dark_red': '4',
+    'dark_purple': '5',
+    'gold': '6',
+    'gray': '7',
+    'dark_gray': '8',
+    'blue': '9',
+    'green': 'a',
+    'aqua': 'b',
+    'red': 'c',
+    'light_purple': 'd',
+    'yellow': 'e',
+    'white': 'f'
+}
+```
+
+### stringCodes
+
+```javascript
+{
+    '0': 'black',
+    '1': 'dark_blue',
+    '2': 'dark_green',
+    '3': 'dark_cyan',
+    '4': 'dark_red',
+    '5': 'dark_purple',
+    '6': 'gold',
+    '7': 'gray',
+    '8': 'dark_gray',
+    '9': 'blue',
+    'a': 'green',
+    'b': 'aqua',
+    'c': 'red',
+    'd': 'light_purple',
+    'e': 'yellow',
+    'f': 'white',
+    'k': 'obfuscated',
+    'l': 'bold',
+    'm': 'strikethrough',
+    'n': 'underlined',
+    'o': 'italic',
+    'r': 'reset',
+    '&': '&',
+    '§': '&'
+}
+```
+
+[More examples.](https://github.com/GroobleDierne/minecraft-protocol-chat-parser/blob/master/example.js)
