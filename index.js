@@ -67,7 +67,7 @@ function parseString(message, acceptAndChar = false) {
     while (message !== '') {
         const currentChar = message[0];
         if (nextChanged) {
-            const newColor = colorCodes[currentChar];
+            const newColor = stringCodes[currentChar];
             if (newColor) {
                 if (newColor === 'bold') bold = true;
                 else if (newColor === 'strikethrough') strikethrough = true;
@@ -172,7 +172,7 @@ const jsonCodes = {
     'yellow': 'e',
     'white': 'f'
 }
-const colorCodes = {
+const stringCodes = {
     '0': 'black',
     '1': 'dark_blue',
     '2': 'dark_green',
@@ -183,18 +183,18 @@ const colorCodes = {
     '7': 'gray',
     '8': 'dark_gray',
     '9': 'blue',
-    a: 'green',
-    b: 'aqua',
-    c: 'red',
-    d: 'light_purple',
-    e: 'yellow',
-    f: 'white',
-    k: 'obfuscated',
-    l: 'bold',
-    m: 'strikethrough',
-    n: 'underlined',
-    o: 'italic',
-    r: 'reset',
+    'a': 'green',
+    'b': 'aqua',
+    'c': 'red',
+    'd': 'light_purple',
+    'e': 'yellow',
+    'f': 'white',
+    'k': 'obfuscated',
+    'l': 'bold',
+    'm': 'strikethrough',
+    'n': 'underlined',
+    'o': 'italic',
+    'r': 'reset',
     '&': '&',
     '§': '&'
 }
@@ -204,7 +204,7 @@ module.exports = {
      * @deprecated This function is deprecated and will be removed in version 3.0.0 use parseString() instead
      */
     parse: require('util').deprecate(parseString, 'The function parse() is deprecated and will be removed in version 3.0.0 use parseString() instead'),
-    colorCodes,
+    stringCodes,
     jsonCodes,
     parseJSON, 
     parseExtra,
