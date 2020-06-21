@@ -1,4 +1,4 @@
-const parseJSON = require('./index').parseJSON // for your usage change "./index" to "minecraft-protocol-chat-parse"
+const parseJSON = require('./index').parseJSON // for your usage change "./index" to "minecraft-protocol-chat-parser"
 const parseString = require('./index').parseString
 const parseExtra = require('./index').parseExtra
 
