@@ -118,6 +118,9 @@ function parseString(message, acceptAndChar = false) {
  * @since 2.0.0
  */
 function parseJSON(message, useAndChar = false) {
+
+    if (!message.extra) return parseExtra(message, useAndChar)
+
     let parsedExtra = '';
 
     for (let extra of message.extra) parsedExtra += parseExtra(extra, useAndChar)

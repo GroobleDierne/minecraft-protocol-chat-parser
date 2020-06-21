@@ -1,4 +1,4 @@
-const parseJSON = require('./index').parseJSON // for your usage change "./index" to "minecraft-protocol-chat-parse"
+const parseJSON = require('./index').parseJSON // for your usage change "./index" to "minecraft-protocol-chat-parser"
 const parseString = require('./index').parseString
 const parseExtra = require('./index').parseExtra
 
@@ -148,3 +148,11 @@ parsedExtra = parseExtra({
 }, true)
 
 console.log(parsedExtra); //&9&oTeam...Team...Team... I like this word !
+
+let noExtraMsg = parseJSON({
+        text: "With 0 extra & only some properties",
+        color: "dark_red",
+        underlined: true
+})
+
+console.log(noExtraMsg); //§4§nWith 0 extra & only some properties

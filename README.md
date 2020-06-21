@@ -37,7 +37,7 @@ Output
     }
   ]
 }
-
+```
 ### parseJSON(message: string | object, useAndChar?: boolean)
 
 Version 2.0.0 include a partial support to parse a JSON chat protocol data into a string. It's only support formating properties and will crash if the data contain hoverEvent, clickEvent or others properties who aren't used for text formating.
