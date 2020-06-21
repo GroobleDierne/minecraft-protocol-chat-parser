@@ -148,3 +148,11 @@ parsedExtra = parseExtra({
 }, true)
 
 console.log(parsedExtra); //&9&oTeam...Team...Team... I like this word !
+
+let noExtraMsg = parseJSON({
+        text: "With 0 extra & only some properties",
+        color: "dark_red",
+        underlined: true
+})
+
+console.log(noExtraMsg); //§4§nWith 0 extra & only some properties
