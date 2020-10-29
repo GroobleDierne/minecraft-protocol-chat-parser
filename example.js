@@ -1,75 +1,26 @@
-const parseJSON = require('./index').parseJSON // for your usage change "./index" to "minecraft-protocol-chat-parser"
-const parseString = require('./index').parseString
-const parseExtra = require('./index').parseExtra
+const { parseJSON, parseString, parseExtra } = require('./index')(735/*735 is the 1.16 protocol number*/)// for your usage change "./index" to "minecraft-protocol-chat-parser"
 
 console.log(parseString("§eHello §kWorld"))
 // output
 // {
-//     text: '',
-//         extra: [
-//             {
-//                 text: 'Hello ',
-//                 color: 'yellow',
-//                 bold: false,
-//                 italic: false,
-//                 underlined: false,
-//                 strikethrough: false,
-//                 obfuscated: false
-//             },
-//             {
-//                 text: 'World',
-//                 color: 'yellow',
-//                 bold: false,
-//                 italic: false,
-//                 underlined: false,
-//                 strikethrough: false,
-//                 obfuscated: true
-//             }
-//         ]
-// }
-
-console.log(parseString("&5I'm §6a &asimple §bmessage", true));
-// output
-// {
-//   text: '',
-//   extra: [
-//     {
-//       text: "I'm ",
-//       color: 'dark_purple',
-//       bold: false,
-//       italic: false,
-//       underlined: false,
-//       strikethrough: false,
-//       obfuscated: false
-//     },
-//     {
-//       text: 'a ',
-//       color: 'gold',
-//       bold: false,
-//       italic: false,
-//       underlined: false,
-//       strikethrough: false,
-//       obfuscated: false
-//     },
-//     {
-//       text: 'simple ',
-//       color: 'green',
-//       bold: false,
-//       italic: false,
-//       underlined: false,
-//       strikethrough: false,
-//       obfuscated: false
-//     },
-//     {
-//       text: 'message',
-//       color: 'aqua',
-//       bold: false,
-//       italic: false,
-//       underlined: false,
-//       strikethrough: false,
-//       obfuscated: false
-//     }
-//   ]
+//     text: 'Hello ',
+//     color: 'yellow',
+//     bold: false,
+//     italic: false,
+//     underlined: false,
+//     strikethrough: false,
+//     obfuscated: false
+//     extra: [
+//         {
+//             text: 'World',
+//             color: 'yellow',
+//             bold: false,
+//             italic: false,
+//             underlined: false,
+//             strikethrough: false,
+//             obfuscated: true
+//         }
+//     ]
 // }
 
 let parsed = parseJSON({
