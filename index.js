@@ -118,6 +118,9 @@ function loader (protocolVersion) {
 
         if (typeof extra === 'string') extra = JSON.parse(extra)
 
+        delete extra.clickEvent
+        delete extra.hoverEvent
+
         let parsedMessage = '';
 
         for (const key in extra) {
