@@ -10,11 +10,11 @@ class TextComponent {
     /**
      * @type {HoverEvent}
      */
-    hoverEvent
+    #hoverEvent
     /**
      * @type {ClickEvent}
      */
-    clickEvent
+    #clickEvent
     constructor(message = '') {
         this.#text = message;
     }
@@ -27,6 +27,26 @@ class TextComponent {
     }
 
     get components () { return this.#extra }
+
+    /**
+     * @returns {ClickEvent}
+     */
+    get clickEvent () { return this.#clickEvent }
+
+    set clickEvent (value) {
+        this.#clickEvent = value
+        this.#jsonGenerated = false
+    }
+
+    /**
+     * @returns {HoverEvent}
+     */
+    get hoverEvent () { return this.#hoverEvent }
+
+    set hoverEvent (value) {
+        this.#hoverEvent = value
+        this.#jsonGenerated = false
+    }
 
     /**
      * Add a component to the current one
@@ -55,33 +75,22 @@ class TextComponent {
      * Return the generated JSON & cache the result
      */
     toJSON() {
-        if (this.#jsonGenerated) return this.#json
+        if (!this.#jsonGenerated) {
+            this.#json = parseString(this.#text)
+            if (this.clickEvent) this.#json.clickEvent = {action: this.clickEvent.action, value: this.clickEvent.value}
+            if (this.hoverEvent) this.#json.hoverEvent = {action: this.hoverEvent.action, value: this.hoverEvent.value}
+        }
+        this.#json.extra = []
 
-        this.#json = this.#parseComponent(this)
+        this.#extra.forEach(component => {
+            this.#json.extra.push(component.toJSON())
+        })
         this.#jsonGenerated = true
-
         return this.#json
     }
 
     invalidateCache() {
         this.#jsonGenerated = false
-    }
-
-    /**
-     * 
-     * @param {TextComponent} component to parse
-     */
-    #parseComponent(component) {
-        let json = parseString(component.text)
-
-        if (component.clickEvent) json.clickEvent = {action: component.clickEvent.action, value: component.clickEvent.value}
-        if (component.hoverEvent) json.hoverEvent = {action: component.hoverEvent.action, value: component.hoverEvent.value}
-        
-        component.components.forEach(comp => {
-            json.extra.push(this.#parseComponent(comp))
-        })
-
-        return json;
     }
 }
 
