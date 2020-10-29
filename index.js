@@ -4,6 +4,22 @@ const suppFeature = require('./src/supportFeature')
 const { ClickEvent, ClickAction } = require('./src/ClickEvent')
 const { HoverEvent, HoverAction } = require('./src/HoverEvent')
 
+const messageExample = {
+    text: "",
+    extra: [
+        {
+            text: "",
+            color: "",
+            bold: false,
+            italic: false,
+            underlined: false,
+            strikethrough: false,
+            obfuscated: false
+
+        }
+    ]
+}
+
 function loader (protocolVersion) {
     const supportFeature = (feature) => suppFeature(feature, protocolVersion)
 
@@ -16,7 +32,8 @@ function loader (protocolVersion) {
      */
     function parseString(message, acceptAndChar = false) {
         if (message.indexOf('§') === -1 
-        && (acceptAndChar === false || message.indexOf('&') === -1)) return { text: message }
+        && (acceptAndChar === false || message.indexOf('&') === -1)
+        && (message.indexOf('#') === -1 || !supportFeature('supportHexColor'))) return { text: message }
 
         const componentList = [];
         let text = '';
@@ -67,12 +84,18 @@ function loader (protocolVersion) {
                 nextChanged = false;
             } else if (currentChar === '§' || (acceptAndChar && currentChar === '&')) {
                 if (nextChanged) {
+                    console.log("unreachable")
                     text += '&';
                     nextChanged = false;
                 } else {
                     nextChanged = true;
                     createJsonComponent();
                 }
+            } else if (currentChar === '#' && supportFeature('supportHexColor')) {
+                createJsonComponent();
+                color = message.slice(0, 7)
+                message = message.slice(7, message.length)
+                continue
             } else {
                 text += currentChar;
             }
@@ -141,22 +164,6 @@ function loader (protocolVersion) {
     return { parseJSON, parseExtra, parseString, TextComponent }
 }
 
-
-const messageExample = {
-    text: "",
-    extra: [
-        {
-            text: "",
-            color: "",
-            bold: false,
-            italic: false,
-            underlined: false,
-            strikethrough: false,
-            obfuscated: false
-
-        }
-    ]
-}
 const extraExample = {
     text: "",
     color: "",
