@@ -11,7 +11,7 @@ class ClickEvent {
     /**
      * 
      * @param {ClickAction} action 
-     * @param {String} value 
+     * @param {Object} value 
      */
     constructor(action, value) {
         this.action = action;

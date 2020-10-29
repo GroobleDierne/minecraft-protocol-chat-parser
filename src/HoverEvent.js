@@ -7,6 +7,11 @@ const HoverAction = {
 class HoverEvent {
     action;
     value;
+    /**
+     * 
+     * @param {HoverAction} action 
+     * @param {Object} value 
+     */
     constructor(action, value) {
         this.action = action;
         this.value = value;
