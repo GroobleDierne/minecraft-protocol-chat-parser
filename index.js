@@ -103,8 +103,8 @@ function parseString(message, acceptAndChar = false) {
 
     if (componentList.length > 0) {
         return {
-            text: '',
-            extra: componentList
+            ...componentList[0],
+            extra: componentList.slice(1, componentList.length)
         };
     } else return { text: '' };
 
