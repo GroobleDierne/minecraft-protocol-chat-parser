@@ -1,8 +1,8 @@
 const ClickAction = {
-    OPEN_URL: 'OPEN_URL',
-    RUN_COMMAND: 'RUN_COMMAND',
-    SUGGEST_COMMAND: 'SUGGEST_COMMAND',
-    CHANGE_PAGE: 'CHANGE_PAGE'
+    OPEN_URL: 'open_url',
+    RUN_COMMAND: 'run_command',
+    SUGGEST_COMMAND: 'suggest_command',
+    CHANGE_PAGE: 'change_page'
 }
 
 class ClickEvent {
