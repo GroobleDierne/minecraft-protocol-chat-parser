@@ -1,6 +1,8 @@
 //Thanks to @jellz for the code I used as an inspiration
 //https://github.com/jellz/minecraft-server/blob/rewrite/src/chat/ChatUtil.js
 const suppFeature = require('./src/supportFeature')
+const { ClickEvent, ClickAction } = require('./src/ClickEvent')
+const { HoverEvent, HoverAction } = require('./src/HoverEvent')
 
 function loader (protocolVersion) {
     const supportFeature = (feature) => suppFeature(feature, protocolVersion)
@@ -218,3 +220,7 @@ const stringCodes = {
 module.exports = loader
 module.exports.stringCodes = stringCodes
 module.exports.jsonCodes = jsonCodes
+module.exports.ClickEvent = ClickEvent
+module.exports.ClickAction = ClickAction
+module.exports.HoverEvent = HoverEvent
+module.exports.HoverAction = HoverAction
