@@ -79,6 +79,11 @@ function loader(parseString) {
                 if (this.clickEvent) this.#json.clickEvent = {action: this.clickEvent.action, value: this.clickEvent.value}
                 if (this.hoverEvent) this.#json.hoverEvent = {action: this.hoverEvent.action, value: this.hoverEvent.value}
             }
+
+            if (this.#extra.length === 0) {
+                this.#jsonGenerated = true
+                return this.#json 
+            }
             this.#json.extra = []
     
             this.#extra.forEach(component => {
