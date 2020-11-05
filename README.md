@@ -1,31 +1,28 @@
 # minecraft-protocol-chat-parser
 [![npm version](https://badge.fury.io/js/minecraft-protocol-chat-parser.svg)](https://www.npmjs.com/package/minecraft-protocol-chat-parser)
 
-A small library to transform a string with Minecraft format caracter into a JavaScript object compatible with Minecraft's chat protocol
+A small library to transform a string with Minecraft format character into a JavaScript object compatible with Minecraft's chat protocol
 
 ## Functions
 
 ### parseString(message: string, acceptAndChar?: boolean)
 
 ```javascript
-const parseString = require('minecraft-protocol-chat-parser').parseString
+const parseString = require('minecraft-protocol-chat-parser')(735).parseString // replace 735 by the protocol number of the targeted minecraft version, 735 is 1.16
 
 console.log(parseString('§4Hello §bWorld'));
 ```
 Output
 ```javascript
 {
-  text: '',
+  text: 'Hello ',   
+  color: 'dark_red',
+  bold: false,      
+  italic: false,
+  underlined: false,
+  strikethrough: false,
+  obfuscated: false,
   extra: [
-    {
-      text: 'Hello ',   
-      color: 'dark_red',
-      bold: false,      
-      italic: false,
-      underlined: false,
-      strikethrough: false,
-      obfuscated: false
-    },
     {
       text: 'World',
       color: 'aqua',
@@ -40,7 +37,7 @@ Output
 ```
 ### parseJSON(message: string | object, useAndChar?: boolean)
 
-Version 2.0.0 include a partial support to parse a JSON chat protocol data into a string. It's only support formating properties and will crash if the data contain hoverEvent, clickEvent or others properties who aren't used for text formating.
+Version 2.0.0 include a partial support to parse a JSON chat protocol data into a string. It's only support formatting properties and will crash if the data contain hoverEvent, clickEvent or others properties who aren't used for text formatting.
 
 ```javascript
 let parsed = parseJSON({

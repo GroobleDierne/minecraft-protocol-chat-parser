@@ -6,18 +6,12 @@ const { HoverEvent, HoverAction } = require('./src/HoverEvent')
 
 const messageExample = {
     text: "",
-    extra: [
-        {
-            text: "",
-            color: "",
-            bold: false,
-            italic: false,
-            underlined: false,
-            strikethrough: false,
-            obfuscated: false
-
-        }
-    ]
+    color: "",
+    bold: false,
+    italic: false,
+    underlined: false,
+    strikethrough: false,
+    obfuscated: false
 }
 
 function loader (protocolVersion) {
@@ -104,14 +98,16 @@ function loader (protocolVersion) {
         }
         createJsonComponent();
 
-        if (componentList.length > 0) {
-            return {
-                ...componentList[0],
-                extra: componentList.slice(1, componentList.length)
-            };
-        } else return { text: '' };
+        if (componentList.length < 0) {
+            return { text: '' }
+        }
 
-        
+        if (componentList.length < 2) return { ...componentList[0] }
+
+        return {
+            ...componentList[0],
+            extra: componentList.slice(1, componentList.length)
+        }
     }
 
     /**
